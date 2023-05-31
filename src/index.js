@@ -15,21 +15,9 @@ app.use(
 app.use(express.json())
 
 // rotas da api
-app.post("/person" , async (req, res)=>{
-    const {name, salary, approved } = req.body
+const personRoutes = require("./routes/personRoutes")
 
-    const person = {
-        name,
-        salary,
-        approved
-    }
-
-    try {
-        await Person.create(person)
-    } catch (error) {
-        res.status(500).json({error: error})
-    }
-})
+app.use("/person", personRoutes) // toda rota /person é redirecionada para personRoutes
 
 // rota inicial / endpoint
 app.get("/", (req, res)=>{
