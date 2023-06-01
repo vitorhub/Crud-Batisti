@@ -1,10 +1,10 @@
 // mongodb+srv://joaofalcao33:<password>@batisticluster.53e9kai.mongodb.net/?retryWrites=true&w=majority
 // mongodb+srv://joaofalcao33:RUPWoCFPA2UiesZB@batisticluster.53e9kai.mongodb.net/?retryWrites=true&w=majority
 // joaofalcao33 RUPWoCFPA2UiesZB
+require('dotenv').config() // para dotenv
 const express = require("express")
-const app = express();
 const mongoose = require("mongoose")
-const Person = require("./models/Person")
+const app = express();
 
 // forma de ver json
 app.use(
@@ -25,7 +25,10 @@ app.get("/", (req, res)=>{
     res.json({message: "oi express"})
 })
 
-mongoose.connect("mongodb+srv://joaofalcao33:RUPWoCFPA2UiesZB@batisticluster.53e9kai.mongodb.net/?retryWrites=true&w=majority")
+const DB_USER = process.env.DB_USER     // para dotenv
+const DB_PASSWORD = encodeURIComponent(process.env.DB_PASSWORD) // para dotenv
+
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@batisticluster.53e9kai.mongodb.net/?retryWrites=true&w=majority`)
 .then(()=>{
     console.log("conectamos ao mongo db atlas")
     // entregar uma porta

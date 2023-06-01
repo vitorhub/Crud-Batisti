@@ -1,2 +1,3 @@
 npm install express nodemon mongoose
 criar projeto mongo db atlas
+npm install dotenv
